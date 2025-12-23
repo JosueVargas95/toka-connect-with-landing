@@ -1,0 +1,283 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* --- Fuentes --- */
+  --font-monserrat: "Montserrat Alternates", sans-serif;
+  --font-sans: "Montserrat", sans-serif;
+
+  /* --- Radios --- */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  /* --- Colores del Sistema (Variables mapeadas) --- */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  /* --- Colores TOKA Específicos --- */
+  --color-toka-navy: hsl(var(--toka-navy));
+  --color-toka-blue: hsl(var(--toka-blue));
+  --color-toka-light-blue: hsl(var(--toka-light-blue));
+  --color-toka-gold: hsl(var(--toka-gold));
+  --color-toka-gray: hsl(var(--toka-gray));
+
+  /* --- Animaciones (Aquí estaba el fallo) --- */
+  --animate-float-slow: float 3s ease-in-out infinite; /* De 8s a 3s */
+  --animate-bounce-gentle: bounce-gentle 1.2s ease-in-out infinite; /* De 3s a 1.2s */
+  --animate-pulse-soft: pulse-soft 1.5s ease-in-out infinite; /* De 4s a 1.5s */
+  --animate-wiggle: wiggle 0.7s ease-in-out infinite; /* De 1.5s a 0.7s */
+  --animate-sway: sway 2.5s ease-in-out infinite; /* De 6s a 2.5s */
+  --animate-shimmer: shimmer 2s linear infinite;
+
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
+  --animate-fade-in-up: fade-in-up 0.8s ease-out forwards;
+  --animate-slide-in-right: slide-in-right 1s cubic-bezier(0.2, 0.8, 0.2, 1)
+    forwards;
+
+  --animate-accordion-down: accordion-down 0.3s ease-out;
+  --animate-accordion-up: accordion-up 0.3s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+      opacity: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+      opacity: 1;
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+      opacity: 1;
+    }
+    to {
+      height: 0;
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-12px) rotate(1deg);
+    }
+  }
+  @keyframes bounce-gentle {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(0.96);
+    }
+  }
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-5deg);
+    }
+    50% {
+      transform: rotate(5deg);
+    }
+  }
+  @keyframes sway {
+    0%,
+    100% {
+      transform: rotate(-3deg) translateX(-5px);
+    }
+    50% {
+      transform: rotate(3deg) translateX(5px);
+    }
+  }
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  @keyframes logo-shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .animate-logo-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.8) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: logo-shimmer 3s infinite linear;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 215 25% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+    --primary: 210 100% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 200 85% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 15% 45%;
+    --accent: 45 95% 55%;
+    --accent-foreground: 215 25% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 210 100% 35%;
+    --radius: 0.75rem;
+
+    /* TOKA Brand Colors */
+    --toka-navy: 215 45% 12%;
+    --toka-blue: 210 100% 35%;
+    --toka-light-blue: 200 85% 45%;
+    --toka-gold: 45 95% 55%;
+    --toka-gray: 210 15% 95%;
+  }
+
+  .dark {
+    --background: 215 45% 8%;
+    --foreground: 210 20% 98%;
+    --card: 215 45% 12%;
+    --card-foreground: 210 20% 98%;
+    --primary: 200 85% 50%;
+    --primary-foreground: 215 45% 8%;
+    --secondary: 210 100% 40%;
+    --muted: 215 35% 20%;
+    --muted-foreground: 210 15% 65%;
+    --accent: 45 95% 55%;
+    --border: 215 35% 20%;
+    --ring: 200 85% 50%;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased font-sans;
+  }
+}
+
+@layer utilities {
+  .gradient-toka {
+    background: linear-gradient(
+      135deg,
+      var(--color-toka-navy) 0%,
+      var(--color-toka-blue) 100%
+    );
+  }
+
+  .text-gradient-toka {
+    background: linear-gradient(
+      135deg,
+      var(--color-toka-blue) 0%,
+      var(--color-toka-light-blue) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-effect {
+    backdrop-filter: blur(12px);
+    background: hsl(var(--background) / 0.8);
+  }
+
+  .animate-shimmer-effect {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+}
