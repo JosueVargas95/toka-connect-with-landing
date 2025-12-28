@@ -38,12 +38,12 @@ export const LoginPage = () => {
       </div>
 
       {/* --- CONTENIDO CENTRADO --- */}
-      <div className="relative z-10 w-full max-w-[420px] px-6 animate-fade-in-up">
+      <div className="relative z-10 w-full max-w-105 px-6 animate-fade-in-up">
         {/* Branding Toka Connect */}
         <div className="flex flex-col items-center mb-10 text-center">
           <h1 className="text-5xl md:text-6xl font-monserrat font-bold tracking-tighter text-white">
             toka
-            <span className="text-gradient-toka block mt-[-8px] text-right text-4xl md:text-5xl">
+            <span className="text-gradient-toka block mt-2 text-right text-4xl md:text-5xl">
               connect
             </span>
           </h1>
