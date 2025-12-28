@@ -1,104 +1,82 @@
-import { Eye, EyeOff, ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { LoginForm } from "./components/LoginForm";
 
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-
-export const LoginForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setTimeout(() => setIsLoading(false), 2000);
-  };
-
+export const LoginPage = () => {
   return (
-    <form onSubmit={handleSubmit} className="space-y-7">
-      <div className="space-y-5">
-        {/* Campo Usuario */}
-        <div className="space-y-2.5">
-          <Label
-            htmlFor="usuario"
-            className="text-toka-navy text-[11px] font-extrabold uppercase tracking-[0.15em] ml-1 opacity-80"
-          >
-            Usuario
-          </Label>
-          <Input
-            id="usuario"
-            type="text"
-            placeholder="nombre.apellido"
-            required
-            className="h-13 bg-white/80 border-slate-200 text-toka-navy placeholder:text-slate-400 focus:border-toka-blue focus:ring-toka-blue/20 rounded-2xl transition-all font-semibold"
-          />
-        </div>
+    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-toka-navy relative overflow-hidden font-sans">
+      {/* --- FONDO ANIMADO DE ALTO NIVEL --- */}
+      <div className="absolute inset-0 z-0">
+        {/* Capa 1: Orbes de Luz Dinámicos (Inspirados en tu versión anterior) */}
+        <div
+          className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-toka-light-blue/20 rounded-full blur-[110px] animate-float-slow opacity-60"
+          style={{ animationDuration: "18s" }}
+        />
+        <div
+          className="absolute bottom-[-20%] right-[-10%] w-[70%] h-[70%] bg-toka-blue/15 rounded-full blur-[130px] animate-sway opacity-50"
+          style={{ animationDelay: "-4s", animationDuration: "22s" }}
+        />
+        <div
+          className="absolute top-[20%] right-[15%] w-[35%] h-[35%] bg-cyan-500/10 rounded-full blur-[90px] animate-float-slow opacity-40"
+          style={{ animationDelay: "-10s", animationDuration: "15s" }}
+        />
 
-        {/* Campo Contraseña */}
-        <div className="space-y-2.5">
-          <div className="flex justify-between items-end px-1">
-            <Label
-              htmlFor="password"
-              className="text-toka-navy text-[11px] font-extrabold uppercase tracking-[0.15em] opacity-80"
-            >
-              Contraseña
-            </Label>
-          </div>
-          <div className="relative">
-            <Input
-              id="password"
-              type={showPassword ? "text" : "password"}
-              placeholder="••••••••"
-              required
-              className="h-13 bg-white/80 border-slate-200 text-toka-navy placeholder:text-slate-400 focus:border-toka-blue focus:ring-toka-blue/20 rounded-2xl transition-all font-semibold pr-12"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-toka-blue transition-colors"
-            >
-              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
-          </div>
-          <div className="text-right mt-1">
-            <a
-              href="#"
-              className="text-[10px] font-bold text-toka-light-blue hover:text-toka-blue transition-colors uppercase tracking-tight"
-            >
-              ¿Olvidaste tu contraseña?
-            </a>
-          </div>
-        </div>
+        {/* Capa 2: Red Global (Patrón de puntos y líneas en movimiento) */}
+        <div
+          className="absolute inset-0 opacity-25 animate-pan-slow"
+          style={{
+            backgroundImage: `
+              radial-gradient(circle at center, var(--color-toka-light-blue) 1.5px, transparent 1.5px),
+              linear-gradient(to right, var(--color-toka-blue) 0.5px, transparent 0.5px),
+              linear-gradient(to bottom, var(--color-toka-blue) 0.5px, transparent 0.5px)
+            `,
+            backgroundSize: "45px 45px, 90px 90px, 90px 90px",
+            backgroundBlendMode: "screen",
+          }}
+        />
+
+        {/* Capa 3: Gradiente de profundidad (Viñeta) */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,var(--color-toka-navy)_100%)] opacity-70" />
       </div>
 
-      {/* Botón de Acción Principal */}
-      <Button
-        type="submit"
-        disabled={isLoading}
-        className="w-full h-13 gradient-toka hover:brightness-110 text-white font-bold rounded-2xl shadow-xl shadow-toka-blue/30 transition-all duration-300 group"
-      >
-        {isLoading ? (
-          <div className="flex items-center justify-center gap-3">
-            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            <span className="tracking-widest text-xs uppercase">
-              Validando...
+      {/* --- CONTENIDO CENTRADO --- */}
+      <div className="relative z-10 w-full max-w-[420px] px-6 animate-fade-in-up">
+        {/* Branding Toka Connect */}
+        <div className="flex flex-col items-center mb-10 text-center">
+          <h1 className="text-5xl md:text-6xl font-monserrat font-bold tracking-tighter text-white">
+            toka
+            <span className="text-gradient-toka block mt-[-8px] text-right text-4xl md:text-5xl">
+              connect
             </span>
-          </div>
-        ) : (
-          <div className="flex items-center justify-center gap-3 w-full">
-            <span className="tracking-[0.2em] uppercase text-xs">
-              Iniciar Sesión
-            </span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </div>
-        )}
-      </Button>
+          </h1>
+        </div>
 
-      {/* Nota de seguridad al final */}
-      <p className="text-center text-[10px] text-toka-navy/40 font-medium">
-        Acceso restringido a personal autorizado.
-      </p>
-    </form>
+        {/* Card de Login con Glassmorphism sutil */}
+        <div className="glass-effect border border-white/20 rounded-[2.5rem] p-10 shadow-2xl bg-white/10 backdrop-blur-2xl">
+          <LoginForm />
+        </div>
+
+        {/* Footer Minimalista al fondo */}
+        <footer className="mt-12 text-center space-y-3">
+          <div className="flex justify-center gap-5 text-[10px] font-bold text-white/40 uppercase tracking-widest">
+            <a
+              href="#"
+              className="hover:text-toka-light-blue transition-colors"
+            >
+              Aviso de Privacidad
+            </a>
+            <span className="text-white/10">|</span>
+            <a
+              href="#"
+              className="hover:text-toka-light-blue transition-colors"
+            >
+              Toka.com.mx
+            </a>
+          </div>
+          <p className="text-[9px] text-white/20 tracking-[0.2em] uppercase">
+            Toka Internacional S.A.P.I. de C.V. {new Date().getFullYear()} •
+            v1.0.4
+          </p>
+        </footer>
+      </div>
+    </div>
   );
 };
