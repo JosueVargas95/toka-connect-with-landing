@@ -1,104 +1,104 @@
-import { LoginForm } from "./components/LoginForm";
+import { Eye, EyeOff, ArrowRight } from "lucide-react";
+import { useState } from "react";
 
-export const LoginPage = () => {
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+
+export const LoginForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setTimeout(() => setIsLoading(false), 2000);
+  };
+
   return (
-    <div className="min-h-screen flex">
-      {/* Left Side - Branding & Visual */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-navy">
-        {/* Animated background elements */}
-        <div className="absolute inset-0">
-          {/* Gradient orbs */}
-          <div className="absolute top-20 left-20 w-96 h-96 bg-cyan/20 rounded-full blur-3xl animate-float" />
-          <div
-            className="absolute bottom-20 right-20 w-80 h-80 bg-cyan-bright/15 rounded-full blur-3xl animate-float"
-            style={{ animationDelay: "2s" }}
+    <form onSubmit={handleSubmit} className="space-y-7">
+      <div className="space-y-5">
+        {/* Campo Usuario */}
+        <div className="space-y-2.5">
+          <Label
+            htmlFor="usuario"
+            className="text-toka-navy text-[11px] font-extrabold uppercase tracking-[0.15em] ml-1 opacity-80"
+          >
+            Usuario
+          </Label>
+          <Input
+            id="usuario"
+            type="text"
+            placeholder="nombre.apellido"
+            required
+            className="h-13 bg-white/80 border-slate-200 text-toka-navy placeholder:text-slate-400 focus:border-toka-blue focus:ring-toka-blue/20 rounded-2xl transition-all font-semibold"
           />
+        </div>
 
-          {/* Grid pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `linear-gradient(var(--color-cyan) 1px, transparent 1px), linear-gradient(90deg, var(--color-cyan) 1px, transparent 1px)`,
-                backgroundSize: "50px 50px",
-              }}
+        {/* Campo Contraseña */}
+        <div className="space-y-2.5">
+          <div className="flex justify-between items-end px-1">
+            <Label
+              htmlFor="password"
+              className="text-toka-navy text-[11px] font-extrabold uppercase tracking-[0.15em] opacity-80"
+            >
+              Contraseña
+            </Label>
+          </div>
+          <div className="relative">
+            <Input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="••••••••"
+              required
+              className="h-13 bg-white/80 border-slate-200 text-toka-navy placeholder:text-slate-400 focus:border-toka-blue focus:ring-toka-blue/20 rounded-2xl transition-all font-semibold pr-12"
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-toka-blue transition-colors"
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
           </div>
-        </div>
-
-        {/* Content */}
-        <div className="relative z-10 flex flex-col justify-between p-12 w-full">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-lg bg-cyan/20 backdrop-blur-sm border border-cyan/30 flex items-center justify-center">
-              <div className="w-6 h-6 rounded bg-cyan" />
-            </div>
-          </div>
-
-          {/* Main content */}
-          <div className="space-y-6">
-            <div className="inline-block">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-cyan/10 backdrop-blur-sm border border-cyan/20">
-                <div className="w-2 h-2 rounded-full bg-cyan animate-pulse" />
-                <span className="text-cyan text-sm font-medium">
-                  Plataforma Global Empresarial
-                </span>
-              </div>
-            </div>
-
-            <h1 className="text-6xl font-bold text-white leading-tight">
-              <span className="block">toka</span>
-              <span className="block text-cyan">connect</span>
-            </h1>
-
-            <p className="text-xl text-cyan-soft/80 max-w-md leading-relaxed">
-              Conectando equipos globales con tecnología de vanguardia.
-              Experiencia empresarial sin fronteras.
-            </p>
-
-            {/* Stats */}
-            <div className="flex gap-8 pt-8">
-              <div>
-                <div className="text-3xl font-bold text-cyan">150+</div>
-                <div className="text-sm text-cyan-soft/60">
-                  Países conectados
-                </div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-cyan">24/7</div>
-                <div className="text-sm text-cyan-soft/60">Soporte global</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-cyan">99.9%</div>
-                <div className="text-sm text-cyan-soft/60">
-                  Uptime garantizado
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Footer */}
-          <div className="text-xs text-cyan-soft/40">
-            Toka Connect | Toka Internacional, S.A.P.I de C.V.{" "}
-            {new Date().getFullYear()}
+          <div className="text-right mt-1">
+            <a
+              href="#"
+              className="text-[10px] font-bold text-toka-light-blue hover:text-toka-blue transition-colors uppercase tracking-tight"
+            >
+              ¿Olvidaste tu contraseña?
+            </a>
           </div>
         </div>
       </div>
 
-      {/* Right Side - Login Form */}
-      <div className="flex-1 flex items-center justify-center p-8 bg-background">
-        <div className="w-full max-w-md">
-          {/* Mobile logo */}
-          <div className="lg:hidden mb-8 text-center">
-            <h1 className="text-4xl font-bold">
-              <span className="text-navy">toka</span>
-              <span className="text-cyan"> connect</span>
-            </h1>
+      {/* Botón de Acción Principal */}
+      <Button
+        type="submit"
+        disabled={isLoading}
+        className="w-full h-13 gradient-toka hover:brightness-110 text-white font-bold rounded-2xl shadow-xl shadow-toka-blue/30 transition-all duration-300 group"
+      >
+        {isLoading ? (
+          <div className="flex items-center justify-center gap-3">
+            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            <span className="tracking-widest text-xs uppercase">
+              Validando...
+            </span>
           </div>
+        ) : (
+          <div className="flex items-center justify-center gap-3 w-full">
+            <span className="tracking-[0.2em] uppercase text-xs">
+              Iniciar Sesión
+            </span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </div>
+        )}
+      </Button>
 
-          <LoginForm />
-        </div>
-      </div>
-    </div>
+      {/* Nota de seguridad al final */}
+      <p className="text-center text-[10px] text-toka-navy/40 font-medium">
+        Acceso restringido a personal autorizado.
+      </p>
+    </form>
   );
 };

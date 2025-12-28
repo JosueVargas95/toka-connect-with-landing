@@ -60,6 +60,17 @@
   --animate-accordion-down: accordion-down 0.3s ease-out;
   --animate-accordion-up: accordion-up 0.3s ease-out;
 
+  --animate-pan-slow: pan-slow 60s linear infinite;
+
+  @keyframes pan-slow {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 100% 100%;
+    }
+  }
+
   @keyframes accordion-down {
     from {
       height: 0;
