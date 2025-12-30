@@ -1,12 +1,16 @@
 import { createBrowserRouter, Navigate } from "react-router";
-
-import { HomePage } from "@/admin/pages/home/HomePage";
-import { LoginPage } from "@/auth/pages/login/LoginPage";
-import { UsersPage } from "@/admin/pages/users/UsersPage";
-import { RegisterPage } from "@/auth/pages/register/RegisterPage";
 import { lazy } from "react";
+
+import { LoginPage } from "@/auth/pages/login/LoginPage";
+import { RegisterPage } from "@/auth/pages/register/RegisterPage";
 import { LandingPage } from "@/landing/pages/LandingPage";
 import { LandingLayout } from "@/landing/layouts/LandingLayout";
+import { ManagementPage } from "@/admin/pages/management/ManagementPage";
+import { CreditCardsPage } from "@/admin/pages/credit-cards/CreditCardsPage";
+import { FundsPage } from "@/admin/pages/funds/FundsPage";
+import { ExpensesPage } from "@/admin/pages/expenses/ExpensesPage";
+import { ReductionPage } from "@/admin/pages/reductions/ReductionPage";
+import { CFDIPage } from "@/admin/pages/cfdis/CFDIPage";
 
 const AuthLayout = lazy(() => import("@/auth/layouts/AuthLayout"));
 const AdminLayout = lazy(() => import("@/admin/layouts/AdminLayout"));
@@ -28,11 +32,30 @@ export const appRouter = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />,
       },
       {
-        path: "users",
-        element: <UsersPage />,
+        path: "administracion",
+        element: <ManagementPage />,
+      },
+      {
+        path: "tarjetas",
+        element: <CreditCardsPage />,
+      },
+      {
+        path: "fondos",
+        element: <FundsPage />,
+      },
+      {
+        path: "gastos",
+        element: <ExpensesPage />,
+      },
+      {
+        path: "decrementos",
+        element: <ReductionPage />,
+      },
+      {
+        path: "cfdi",
+        element: <CFDIPage />,
       },
     ],
   },
